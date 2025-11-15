@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aventura Literaria</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Fredoka+One&display=swap" rel="stylesheet" />
+  <style>
+    /* 🎨 COLORES Y FUENTES BASE */
+    :root {
+      --azul: #0d47a1;
+      --verde: #43a047;
+      --fondo: #e8f5e9;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #81d4fa, #a5d6a7);
+      margin: 0;
+      padding: 0;
+      color: #1a1a1a;
+      overflow-x: hidden;
+    }
+
+    h1, h2 {
+      font-family: 'Fredoka One', cursive;
+      color: var(--azul);
+      text-align: center;
+    }
+
+    p, label {
+      font-size: 1.1em;
+    }
+
+    button {
+      background: var(--azul);
+      color: white;
+      padding: 12px 28px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      margin-top: 20px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: var(--verde);
+      transform: scale(1.05);
+      box-shadow: 0 0 10px #81c784;
+    }
+
+    /* 🔹 PANTALLAS */
+    .pantalla {
+      display: none;
+      width: 100%;
+      min-height: 100vh;
+      padding: 40px 20px;
+      box-sizing: border-box;
+      animation: fadeIn 0.6s ease;
+    }
+
+    .pantalla.activa {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* FORMULARIOS */
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid var(--azul);
+      border-radius: 10px;
+      margin: 8px 0;
+      font-size: 1em;
+      background-color: #e3f2fd;
+    }
+
+    /* IMÁGENES Y VIDEOS */
+    img, video {
+      width: 100%;
+      max-width: 800px;
+      border-radius: 15px;
+      display: block;
+      margin: 15px auto;
+      box-shadow: 0 6px 12px rgba(13, 71, 161, 0.3);
+    }
+
+    /* OBJETIVOS */
+    .objetivos {
+      background-color: #bbdefb;
+      border-left: 8px solid var(--azul);
+      border-radius: 12px;
+      padding: 15px;
+      margin: 25px auto;
+      max-width: 800px;
+    }
+
+    .objetivos li {
+      margin: 10px 0;
+    }
+
+    /* JUEGOS */
+    .juegos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .juegos img {
+      width: 300px;
+      cursor: pointer;
+      border-radius: 20px;
+      transition: 0.3s;
+    }
+
+    .juegos img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px var(--azul);
+    }
+
+    /* ENLACES */
+    .enlace {
+      display: block;
+      background-color: var(--azul);
+      color: white;
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 20px;
+      text-align: center;
+      margin: 10px auto;
+      width: 70%;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .enlace:hover {
+      background-color: var(--verde);
+      transform: scale(1.05);
+    }
+
+    /* REFLEXIONES */
+    .reflexion {
+      background-color: #e3f2fd;
+      border-left: 6px solid var(--verde);
+      padding: 15px;
+      border-radius: 12px;
+      margin: 20px auto;
+      max-width: 700px;
+      font-style: italic;
+      text-align: center;
+      color: var(--azul);
+    }
+
+    /* MENÚ */
+    nav {
+      background: linear-gradient(90deg, var(--azul), var(--verde));
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 12px 0;
+      text-align: center;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 0 15px;
+      font-size: 1.1em;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: yellow;
+      text-shadow: 0 0 8px white;
+    }
+
+    @media (max-width: 768px) {
+      .juegos img {
+        width: 90%;
+      }
+      .enlace {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🚀 MENÚ SUPERIOR -->
+  <nav>
+    <a href="#" onclick="mostrarPantalla(1)">🏠 Inicio 🏠</a>
+    <a href="#" onclick="mostrarPantalla(2)">🖇️ Conocimientos previos 🖇️</a>
+    <a href="#" onclick="mostrarPantalla(3)">🎯 Objetivo 🎯</a>
+    <a href="#" onclick="mostrarPantalla(4)">🗂️ Material 🗂️</a>
+    <a href="#" onclick="mostrarPantalla(5)">🎮 Juegos 🎮</a>
+    <a href="#" onclick="mostrarPantalla(6)">📌 Enlaces 📌</a>
+    <a href="#" onclick="mostrarPantalla(7)">💡 Reflexiones 💡</a>
+    <a href="#" onclick="mostrarPantalla(8)">📘 Classroom 📘</a>
+  </nav>
+
+  <!-- 🧾 PANTALLA 1: REGISTRO -->
+  <section class="pantalla activa" id="pantalla1">
+    <h1>Bienvenidos a la Aventura Literaria</h1>
+    <p style="text-align:center;">📋 Regístrate para comenzar tu viaje por el mundo de la lectura 📋</p>
+    <div style="max-width:600px;margin:auto;">
+      <label>Nombre:</label>
+      <input type="text" id="nombre" placeholder="Escribe tu nombre...">
+      <div>  </div>
+      <button onclick="mostrarPantalla(2)">Siguiente ➡️</button>
+    </div>
+  </section>
+
+  <!-- 🧠 PANTALLA 2: PREGUNTAS -->
+  <section class="pantalla" id="pantalla2">
+    <h1>¿Qué tan literario eres?</h1>
+    <div style="max-width:700px;margin:auto;">
+      <label>📖 ¿Qué prefieres leer?</label>
+      <select>
+        <option>🧚‍♀️📖Cuentos 📖🧚‍♀️</option><option>⚔️🏹Leyendas🏹⚔️</option><option>🦊📝Fábulas📝🦊</option>
+        <option>💌📚Novelas📚💌</option><option>🌟💭Poemas💭🌟</option><option>🎭Obras de teatro🎭</option>
+      </select>
+      <label>💬 ¿Por qué te gusta ese tipo de lectura?</label>
+      <textarea rows="3"></textarea>
+      <label>📚 ¿Cuál fue lo último que leíste?</label>
+      <input type="text">
+      <label>🎬 ¿Qué película adaptada de un cuento has visto?</label>
+      <input type="text">
+      <button onclick="mostrarPantalla(3)">Siguiente ➡️</button>
+    </div>
+  </section>
+
+  <!-- 🎯 PANTALLA 3: OBJETIVOS -->
+  <section class="pantalla" id="pantalla3">
+    <h1>🎯 Objetivo del tema</h1>
+    <div class="objetivos">
+      <ul>
+🧚‍♀️📖Descubrir lo divertido que es leer y conocer diferentes tipos de historias, géneros literarios, escritores y algunos tips que te ayudarán a mejorar tu interés por la literatura. 
+A través de la página web con videos, juegos y actividades, podrán aprender mientras se divierten.🧚‍♀️📖
+      </ul>
+      <ul>
+🖊️🖇️🎮Así entender que leer no solo es jugar con palabras, sino una forma de imaginar y aprender cosas nuevas. Leer también nos hace más sabios, creativos y felices.🖊️🖇️🎮
+      </ul>
+    </div>
+    <div style="text-align:center;">
+      <button onclick="mostrarPantalla(4)">Ver Material Complementario 📽️</button>
+    </div>
+  </section>
+
+  <!-- 🎥 PANTALLA 4: MATERIAL COMPLEMENTARIO -->
+  <section class="pantalla" id="pantalla4">
+    <h1>Material Complementario</h1>
+
+    <h3> ¿Qué es la literatura? </h3>
+    <video controls autoplay muted>
+      <source src="video1.mp4" type="video/mp4">
+    </video>
+
+    <h3> Autores </h3>
+    <video controls autoplay muted>
+      <source src="video3.mp4" type="video/mp4">
+    </video>
+
+    <h3> Géneros literarios </h3>
+    <video controls autoplay muted>
+      <source src="video2.mp4" type="video/mp4">
+    </video>
+    <h3> Tips </h3>
+    <img src="imagen1.jpeg" alt="Imagen literaria 1" />
+
+
+    <div style="text-align:center;">
+      <button onclick="mostrarPantalla(5)">Ir a Juegos 🎮</button>
+    </div>
+  </section>
+
+  <!-- 🎮 PANTALLA 5: JUEGOS -->
+  <section class="pantalla" id="pantalla5">
+    <h1>🎮 Juegos Interactivos</h1>
+    <div class="juegos">
+      <a href="https://www.educaplay.com/learning-resources/26558196-ranacipito.html" target="_blank">
+        <img src="https://img.freepik.com/vector-premium/mas-linda-ilustracion-ranas-ninos-estilo-plano-dara-vida-fantasias-ninos_869492-1962.jpg" alt="Juego 1">
+      </a>
+      <a href="https://view.genially.com/69129a701875b12f54bb4257/interactive-content-de-lectores" target="_blank">
+        <img src="https://blog.falvarez.es/uploads/2007/08/arcade-galaxian.gif" alt="Juego 2">
+      </a>
+      <a href="https://generoli.my.canva.site/" target="_blank">
+        <img src="https://www.editorialmd.com/wp-content/uploads/memorama-2-1.jpg" alt="Juego 1">
+      </a>
+    </div>
+    <div style="text-align:center;">
+      <button onclick="mostrarPantalla(6)">Ver Enlaces 🔗</button>
+    </div>
+  </section>
+
+  <!-- 🔗 PANTALLA 6: ENLACES -->
+  <section class="pantalla" id="pantalla6">
+    <h1>🔗 Enlaces de Interés</h1>
+    <a href="https://recursos.literatura.enp.unam.mx/tema.php?id=40" target="_blank" class="enlace">El texto narrativo literario y no literario</a>
+    <a href="https://www.youtube.com/watch?v=cUrObIZU7pk" target="_blank" class="enlace">¿QUÉ es la LITERATURA para NIÑOS?</a>
+    <a href="https://www.youtube.com/watch?v=MHz7klt87-8 " target="_blank" class="enlace">TEXTOS LITERARIOS 👉¿Que son?👉 Tipos👉 Ejemplos📌</a>
+    <a href="https://www.elem.mx/obra/datos/219259#:~:text=%C3%81lvaro%20Cepeda%20Datos_obra-,Literatura%20y%20conciencia%20social%20en%20nueve%20escritores%20representativos%20de%20Hispanoam%C3%A9rica,Gabriel%20Garc%C3%ADa%20M%C3%A1rquez%2C%20%C3%81lvaro%20Cepeda" target="_blank" class="enlace">Nueve escritores representativos de Hispanoamérica</a>
+    <a href="https://www.donquijote.org/es/lengua-espanola/escritores-espanoles/#:~:text=Miguel%20de%20Cervantes%20(29%20de,por%20detr%C3%A1s%20de%20la%20Biblia" target="_blank" class="enlace">Famosos escritores hispanos y españoles</a>
+    <a href="https://lamenteesmaravillosa.com/escritores-mas-importantes-historia/ " target="_blank" class="enlace">Los 7 escritores más importantes de la historia</a>
+    <div style="text-align:center;">
+      <button onclick="mostrarPantalla(7)">Ir a Reflexiones 💭</button>
+    </div>
+  </section>
+
+  <!-- 💭 PANTALLA 7: REFLEXIONES -->
+  <section class="pantalla" id="pantalla7">
+<h2>💭 Reflexión Final: Nuestra Aventura Literaria</h2>
+    <div class="reflexion">1️⃣ Aprendimos que leer es una gran aventura llena de imaginación y emoción.</div>
+    <div class="reflexion">2️⃣ Cada historia nos enseña algo nuevo y especial.</div>
+    <div class="reflexion">3️⃣ Los libros pueden hacernos reír, pensar o cambiar la forma en que vemos el mundo.</div>
+    <div class="reflexion">4️⃣ Conocimos a grandes escritores como Shakespeare, Cervantes, Sor Juana, Juan Rulfo y Rosario Castellanos.</div>
+    <div class="reflexion">5️⃣ Aprendimos que la literatura se vive y se siente, no solo se lee.</div>
+    <div class="reflexion">6️⃣ Con los videos y juegos, aprendimos de una manera divertida.</div>
+    <div class="reflexion">7️⃣ Leer y crear historias nos ayuda a imaginar y expresar lo que sentimos.</div>
+    <div class="reflexion">8️⃣ Los libros son parte de nuestra cultura y cuentan quiénes somos.</div>
+    <div class="reflexion">9️⃣ Leer no es una obligación, ¡es una aventura!</div>
+    <div class="reflexion">🔟 La literatura nos hace curiosos, creativos y soñadores.</div>
+    <h2>✨ Todos podemos ser autores de nuestras propias aventuras.</h2>
+    <div style="text-align:center;">
+      <button onclick="mostrarPantalla(8)">Ir a Classroom 📘</button>
+    </div>
+  </section>
+
+  <!-- 🏫 PANTALLA 8: CLASSROOM -->
+  <section class="pantalla" id="pantalla8">
+    <h1>📘 Accede a tu Clase en Google Classroom</h1>
+  <div class="objetivos">
+        <ul>
+        🐤🐥 Después de haber revisado el material, deberas ingresar a la siguiente clase para poder realizar las diversas actividades de evaluación. 🐤🐥
+        </ul>
+      </div>
+    <p style="text-align:center;">Haz clic en el botón para ingresar directamente a tu clase de lectura.</p>
+    <div style="text-align:center;">
+      <a href="https://classroom.google.com/c/ODIyNzE4NDgxOTA1?cjc=pamrw3ky" target="_blank" class="enlace">🚀 Ir al Classroom 🚀</a>
+    </div>
+    <div style="text-align:center;margin-top:30px;">
+      <button onclick="mostrarPantalla(1)">Volver al Inicio 🏠</button>
+    </div>
+  </section>
+
+  <script>
+    // Función para cambiar entre pantallas
+    function mostrarPantalla(num) {
+      const pantallas = document.querySelectorAll('.pantalla');
+      pantallas.forEach(p => p.classList.remove('activa'));
+      document.getElementById('pantalla' + num).classList.add('activa');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+
+</body>
+</html>
